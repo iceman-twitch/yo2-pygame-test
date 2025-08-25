@@ -1,5 +1,6 @@
 import pygame
 import os
+import sys
 import math
 
 class Mouse:
@@ -24,8 +25,8 @@ class Mouse:
         self.cursor_clicked_shadow = pygame.image.load(os.path.join("export", "data", "common", "m_cursor", "mausuk_n02_s.png")).convert_alpha()
     
     def draw(self):
-        self.screen.blit(self.current_cursor_shadow,(self.x - self.cursor_normal_shadow.get_width() // 2,self.y - self.cursor_normal_shadow.get_height() // 2))
-        self.screen.blit(self.current_cursor,(self.x - self.cursor_normal.get_width() // 2,self.y - self.cursor_normal.get_height() // 2))
+        self.screen.blit(self.current_cursor_shadow,((self.x+16) - self.cursor_normal_shadow.get_width() // 2,(self.y+16) - self.cursor_normal_shadow.get_height() // 2))
+        self.screen.blit(self.current_cursor,((self.x+16) - self.cursor_normal.get_width() // 2,(self.y+16) - self.cursor_normal.get_height() // 2))
     def update(self):
         self.x, self.y = pygame.mouse.get_pos()
         self.mouse_buttons = pygame.mouse.get_pressed()
@@ -49,8 +50,8 @@ class Mouse:
 
 class ClickAnimation:
     def __init__(self, x, y):
-        self.x = x - 16
-        self.y = y - 16
+        self.x = x
+        self.y = y
         self.start_time = pygame.time.get_ticks()
         # Load click animation frames (assuming mausuk_e01_c01.png is the base frame)
         self.base_img = pygame.image.load(os.path.join("export", "data", "common", "m_cursor", "mausuk_e01_c01.png")).convert_alpha() 
@@ -87,3 +88,24 @@ class ClickAnimation:
         # Draw centered at position
         surface.blit(scaled_img, (self.x - width//2, self.y - height//2))
         
+def test_mouse():
+    pygame.init()
+    screen = pygame.display.set_mode((800, 600))
+    pygame.display.set_caption("Yu-Gi-Oh! Mouse Test")
+    clock = pygame.time.Clock()
+    # Hide default cursor
+    pygame.mouse.set_visible(False)
+    mouse = Mouse(screen)
+    
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+        screen.fill((0, 0, 0))  # Always black background
+        mouse.update()
+        pygame.display.flip()
+        clock.tick(60)
+
+if __name__ == "__main__":
+    test_mouse()
