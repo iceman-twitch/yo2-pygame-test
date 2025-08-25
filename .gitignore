@@ -1,0 +1,49 @@
+# Virtual environments
+myenv/
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+__pycache__/*.pyc
+
+# Build
+dist/
+build/
+
+src/
+src.zip
+
+main.py
+
+# Release
+*.zip
+*.7z
+*.rar
+*.exe
+
+# chromedriver
+chromedriver.exe
+
+# images
+*.jpg
+*.png
+
+# json 
+token.json
+admins.json
+filter.json
+
+# text 
+*.txt
+
+# IDE files
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
