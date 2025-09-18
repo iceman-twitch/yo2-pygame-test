@@ -1,6 +1,7 @@
 import pygame
 import sys
 from mouse import Mouse
+from menu import Menu
 from intro import Intro
 
 # Add at the top
@@ -36,7 +37,7 @@ def main():
     # Hide default cursor
     pygame.mouse.set_visible(False)
     mouse = Mouse(screen)
-    intro = Intro(screen, 800, 600)
+    game = Intro(screen, 800, 600)
     current_state = GameState.INTRO
     while True:
         for event in pygame.event.get():
@@ -46,12 +47,17 @@ def main():
         # Here needs to do some stuff
         screen.fill((0, 0, 0))  # Always black background
         if current_state == GameState.INTRO:
-            if intro.current_state != 5:
-                intro.update()
-            elif intro.current_state == 5:
+            if game.current_state != 5:
+                game.update()
+            elif game.current_state == 5:
                 current_state = GameState.MAIN_MENU
-                intro = None  # Let garbage collector handle it
-                print("Let garbage collector handle it (intro)")
+                game = None  # Let garbage collector handle it
+        if current_state == GameState.MAIN_MENU:
+            if game == None:
+                game = Menu(screen)
+            if game != None:
+                game.update()
+
         mouse.update()
         pygame.display.flip()
         clock.tick(60)
