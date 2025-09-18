@@ -29,8 +29,6 @@ main.py
 chromedriver.exe
 
 # images
-*.jpg
-*.png
 
 # json 
 token.json
