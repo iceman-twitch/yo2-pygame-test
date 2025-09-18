@@ -229,9 +229,8 @@ class YugiohLauncher:
             
             # Try multiple possible game executable paths
             game_paths = [
-                os.path.join("game.exe"),
-                os.path.join("yu-gi-oh.exe"),
-                os.path.join("bin", "game.exe")
+                os.path.join("yo2.exe"),
+                os.path.join("bin", "yo2.exe")
             ]
             
             game_found = False
